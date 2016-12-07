@@ -45,6 +45,7 @@ class AppAuth
             ]
         ]);
 
+        // TODO: Try using marshaller to convert response data to Token object
         $this->token_info = json_decode($res->getBody()->getContents());
 
         $this->token_info['issued_time'] = time();
