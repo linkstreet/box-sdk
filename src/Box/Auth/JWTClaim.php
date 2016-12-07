@@ -17,7 +17,7 @@ class JWTClaim
     public function toArray()
     {
         // Can do this since it has only public properties.
-        // Should more to reflection class logic if any public or private properties are added to `this`.
+        // Should move to reflection class logic if any public or private properties are added to `this`.
         return (array)$this;
     }
 }
