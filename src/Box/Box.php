@@ -45,7 +45,7 @@ class Box
             "sub" => $app_auth_info['id'],
             "box_sub_type" => $app_auth_info['subscription_type'],
             "jti" => $unique_key,
-            "exp" => time() + (($expiry_buffer <= 60) ?: 60)
+            "exp" => (time() + (($expiry_buffer <= 60) ? $expiry_buffer: 60))
         ];
 
         return new JWTClaim($config);
