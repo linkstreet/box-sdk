@@ -45,7 +45,11 @@ class AppAuth
             ]
         ]);
 
-        return $this->token_info = json_decode($res->getBody()->getContents());
+        $this->token_info = json_decode($res->getBody()->getContents());
+
+        $this->token_info['issued_time'] = time();
+
+        return $this->token_info;
     }
 
 
