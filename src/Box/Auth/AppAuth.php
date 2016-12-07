@@ -35,31 +35,17 @@ class AppAuth
 
         $jwt = JWT::encode($token, $key, 'RS256', $this->key_id);
 
-        try {
+        // Exceptions documentation can be found in http://docs.guzzlephp.org/en/latest/quickstart.html#exceptions
+        $res = $this->guzzle_client->request('POST', $claim->aud, [
+            'form_params' => [
+                'grant_type' => GrantType::JWT,
+                'client_id' => $this->client_id,
+                'client_secret' => $this->client_secret,
+                'assertion' => $jwt
+            ]
+        ]);
 
-            $res = $this->guzzle_client->request('POST', $claim->aud, [
-                // 'grant_type' => "authorization_code",
-                'form_params' => [
-                    'grant_type' => GrantType::JWT,
-                    'client_id' => $this->client_id,
-                    'client_secret' => $this->client_secret,
-                    'assertion' => $jwt
-                ]
-            ]);
-
-        } catch (\GuzzleHttp\Exception\ClientException $e) {
-            echo $e->getMessage();
-            // TODO: Throw bad request exception with guzzle message
-            // $e->getResponse()->getBody()->getContents() returns the full message info
-        } catch (\Exception $e) { // TODO: Clarify if we really need to catch this exception.
-            echo $e->getMessage();
-            // TODO: Throw default exception with guzzle message
-        }
-
-        // var_dump($jwt);
-        // var_dump($res->getBody()->getContents());
-        // var_dump($claim->toArray());
-        exit;
+        return $this->token_info = json_decode($res->getBody()->getContents());
     }
 
 
