@@ -1,0 +1,26 @@
+{
+    "name": "linkstreet/box-php",
+    "description": "Box sdk for communicating with latest box API",
+    "type": "sdk",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Cerlin",
+            "email": "cerlin@linkstreet.in"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Box\\": "src\\Box\\"
+        }
+    },
+    "require": {
+        "firebase/php-jwt": "^4.0",
+        "guzzlehttp/guzzle": "^6.2",
+        "webmozart/assert": "^1.2"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^3.2"
+    }
+}
