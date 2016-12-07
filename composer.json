@@ -1,6 +1,6 @@
 {
-    "name": "linkstreet/box-php",
-    "description": "Box sdk for communicating with latest box API",
+    "name": "linkstreet/box",
+    "description": "Box sdk for communicating with latest box API (v2)",
     "type": "sdk",
     "license": "MIT",
     "authors": [
