@@ -10,12 +10,28 @@ use Box\Auth\AppAuth;
 class Box
 {
 
+    /**
+     * Variable which holds the app auth instance
+     * Box\Auth\AppAuth
+     */
     protected $app_auth;
 
+    /**
+     * Variable which holds the jwt claim instance
+     * Box\Auth\JWTClaim
+     */
     protected $jwt_claim = null;
 
+    /**
+     * Variable which holds client_id and client_secret
+     * Array
+     */
     private $client_info = [];
     
+    /**
+     * Validating and initializing client info
+     * @param $client_info Array
+     */
     public function __construct($client_info = [])
     {
         $this->validateClientInfo($client_info);
@@ -23,6 +39,11 @@ class Box
         $this->client_info = $client_info;
     }
 
+    /**
+     * Method which creates AppAuth client
+     * @param $app_auth_info Array
+     * @return Box\Auth\AppAuth
+     */
     public function getAppAuthClient($app_auth_info = [])
     {
         $this->validateAppAuthInfo($app_auth_info);
@@ -36,6 +57,13 @@ class Box
         return $this->app_auth;
     }
 
+    /**
+     * Method which creates JWTClaim
+     * @param $app_auth_info Array
+     * @param $key_length Integer Defaults to 32
+     * @param $expiry_buffer Interger Should not be more than 60. Defaults to 10
+     * @return Box\Auth\JWTClaim
+     */
     protected function createJWTClaim($app_auth_info, $key_length = 32, $expiry_buffer = 10)
     {
         $unique_key = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($key_length/strlen($x)))), 1, $key_length);
@@ -51,6 +79,10 @@ class Box
         return new JWTClaim($config);
     }
 
+    /**
+     * Method to validate the $client_info
+     * @throws \InvalidArgumentException
+     */
     private function validateClientInfo($client_info)
     {
         Assert::keyExists($client_info, 'client_id', 'Missing client id');
@@ -59,6 +91,10 @@ class Box
         Assert::stringNotEmpty($client_info['client_secret'], 'The client id must be string and not empty. Got: %s');
     }
 
+    /**
+     * Method to validate the $app_auth_info
+     * @throws \InvalidArgumentException
+     */
     private function validateAppAuthInfo($app_auth_info)
     {
         Assert::keyExists($app_auth_info, 'key_id', 'Missing key id');
