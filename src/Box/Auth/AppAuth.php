@@ -5,11 +5,16 @@ namespace Box\Auth;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client as GuzzleClient;
 use Box\Enums\GrantType;
+use Box\Services\Folders\FolderService;
 
 class AppAuth
 {
 
     private $token_info;
+
+    protected $folder_service = null;
+
+    protected $file_service = null;
 
     public function __construct($app_auth_info)
     {
@@ -48,16 +53,15 @@ class AppAuth
         // TODO: Try using marshaller to convert response data to Token object
         $this->token_info = json_decode($res->getBody()->getContents());
 
-        $this->token_info['issued_time'] = time();
+        $this->token_info->issued_time = time();
 
-        return $this->token_info;
+        return $this->getTokenInfo();
     }
 
-
-
-    public function getUserService()
+    public function getTokenInfo()
     {
-        // TODO: Implement the service
+        // TODO: Validate if token is expired and then send
+        return $this->token_info;
     }
 
     public function getFileService()
@@ -65,7 +69,12 @@ class AppAuth
         // TODO: Implement the service
     }
 
+    public function getFolderService($force_new_instance = false)
     {
+        if (is_null($this->folder_service) || $force_new_instance) {
+            $this->folder_service = new FolderService($this);
+        }
 
+        return $this->folder_service;
     }
 }
