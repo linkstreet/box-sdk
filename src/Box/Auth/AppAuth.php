@@ -5,11 +5,16 @@ namespace Box\Auth;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client as GuzzleClient;
 use Box\Enums\GrantType;
+use Box\Services\Folders\FolderService;
 
 class AppAuth
 {
 
     private $token_info;
+
+    protected $folder_service = null;
+
+    protected $file_service = null;
 
     public function __construct($app_auth_info)
     {
@@ -48,16 +53,15 @@ class AppAuth
         // TODO: Try using marshaller to convert response data to Token object
         $this->token_info = json_decode($res->getBody()->getContents());
 
-        $this->token_info['issued_time'] = time();
+        $this->token_info->issued_time = time();
 
-        return $this->token_info;
+        return $this->getTokenInfo();
     }
 
-
-
-    public function getUserService()
+    public function getTokenInfo()
     {
-        // TODO: Implement the service
+        // TODO: Validate if token is expired and then send
+        return $this->token_info;
     }
 
     public function getFileService()
@@ -65,88 +69,12 @@ class AppAuth
         // TODO: Implement the service
     }
 
-    public function getFolderService()
+    public function getFolderService($force_new_instance = false)
     {
-        // TODO: Implement the service
-    }
+        if (is_null($this->folder_service) || $force_new_instance) {
+            $this->folder_service = new FolderService($this);
+        }
 
-    public function getMetadataService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getWebLinksService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getWatermarkingService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getCollectionsService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getSearchService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getCollaborationsService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getSharedItemsService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getCommentsService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getTasksService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getEventsService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getWebhooksV2Service()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getUsersService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getGroupsService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getDevicesService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getRetentionPoliciesService()
-    {
-        // TODO: Implement the service
-    }
-
-    public function getLegalHoldsPolicyService()
-    {
-        // TODO: Implement the service
+        return $this->folder_service;
     }
 }

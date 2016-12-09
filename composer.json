@@ -18,7 +18,8 @@
     "require": {
         "firebase/php-jwt": "^4.0",
         "guzzlehttp/guzzle": "^6.2",
-        "webmozart/assert": "^1.2"
+        "webmozart/assert": "^1.2",
+        "anujrnair/php-json-marshaller": "^1.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^3.2"
