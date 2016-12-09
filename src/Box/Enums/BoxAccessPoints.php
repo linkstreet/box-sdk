@@ -9,7 +9,22 @@ namespace Box\Enums;
 abstract class BoxAccessPoints
 {
     /**
+     * API base url
+     */
+    const APIBASEURL = "https://api.box.com";
+
+    /**
+     * Access point version
+     */
+    const APIVERSION = "/2.0";
+
+    /**
      * oAuth2 token end point.
      */
-    const OAUTH2TOKEN = "https://api.box.com/oauth2/token";
+    const OAUTH2TOKEN = SELF::APIBASEURL . "/oauth2/token";
+
+    /**
+     * Folder info API
+     */
+    const FOLDERINFO = SELF::APIBASEURL . SELF::APIVERSION . "/folders";
 }
