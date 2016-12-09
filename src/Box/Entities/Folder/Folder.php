@@ -1,8 +1,8 @@
 <?php
 
-namespace Box\Entities\File;
+namespace Box\Entities\Folder;
 
-class File
+class Folder
 {
     /**
      * @MarshallProperty(name="type", type="string")
