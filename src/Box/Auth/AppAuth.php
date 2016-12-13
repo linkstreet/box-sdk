@@ -6,6 +6,7 @@ use Firebase\JWT\JWT;
 use GuzzleHttp\Client as GuzzleClient;
 use Box\Enums\GrantType;
 use Box\Services\Folders\FolderService;
+use Box\Services\Files\FileService;
 
 class AppAuth
 {
@@ -64,9 +65,13 @@ class AppAuth
         return $this->token_info;
     }
 
-    public function getFileService()
+    public function getFileService($force_new_instance = false)
     {
-        // TODO: Implement the service
+        if (is_null($this->file_service) || $force_new_instance) {
+            $this->file_service = new FileService($this);
+        }
+
+        return $this->file_service;
     }
 
     public function getFolderService($force_new_instance = false)
