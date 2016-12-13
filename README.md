@@ -1,1 +1,1 @@
-WORK IN PROGRESS
+Box Api v2.0 SDK under development.
