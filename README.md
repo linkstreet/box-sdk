@@ -8,6 +8,7 @@ So far this SDK has only machine to machine authentication mechanism and the fol
 #### Files
 1. Upload file
 2. Upload Pre flight - This API is used to check if the metadata supplied is valid or not.
+3. Get embed URL
 
 ### Usage
 
@@ -43,3 +44,4 @@ So far this SDK has only machine to machine authentication mechanism and the fol
     
         1. uploadPreFlight($file_path = "", $folder_id = 0);
         2. uploadFile($file_path = "", $folder_id = 0);
+        3. getEmbedUrl($file_id)
