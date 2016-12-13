@@ -11,11 +11,11 @@ use Box\Exceptions\BaseException;
  */
 class FileNotFoundException extends BaseException
 {
-    public function __construct($message = ExceptionMessages::FILENOTFOUND)
     /**
      * FileNotFoundException constructor.
      * @param string $message
      */
+    public function __construct($message = ExceptionMessages::FILE_NOT_FOUND)
     {
         parent::__construct($message, 404);
     }
