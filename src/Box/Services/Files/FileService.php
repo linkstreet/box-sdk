@@ -26,7 +26,7 @@ class FileService extends BaseService
         // Throws exception on 4XX response code
         return $this->guzzle_client->request(
             'OPTIONS',
-            BoxAccessPoints::FILEUPLOADPREFLIGHT,
+            BoxAccessPoints::FILE_UPLOAD_PREFLIGHT,
             [
                 "json" => [
                     "name" => $file_name,
@@ -49,7 +49,7 @@ class FileService extends BaseService
         // Throws exception on 4XX response code
         return $this->guzzle_client->request(
             'POST',
-            BoxAccessPoints::FILEUPLOAD,
+            BoxAccessPoints::FILE_UPLOAD,
             [
                 "multipart" => [
                     [
@@ -81,7 +81,7 @@ class FileService extends BaseService
 
         $response = $this->guzzle_client->request(
             'GET',
-            BoxAccessPoints::FILEEMBEDURL . BoxAccessPoints::URLSEPARATOR . $file_id . "?fields=expiring_embed_link",
+            BoxAccessPoints::FILE_EMBED_URL . BoxAccessPoints::URL_SEPARATOR . $file_id . "?fields=expiring_embed_link",
             [
                 "headers" => $this->getAuthHeaders()
             ]

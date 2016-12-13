@@ -8,7 +8,7 @@ class JWTClaim
 {
     public function __construct($options)
     {
-        $this->aud = BoxAccessPoints::OAUTH2TOKEN;
+        $this->aud = BoxAccessPoints::OAUTH2_TOKEN;
         foreach ($options as $key => $value) {
             $this->$key = $value;
         }

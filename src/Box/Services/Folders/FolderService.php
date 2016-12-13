@@ -24,7 +24,7 @@ class FolderService extends BaseService
         // Throws exception on 4XX response code
         return $this->guzzle_client->request(
             'GET',
-            BoxAccessPoints::FOLDERINFO . BoxAccessPoints::URLSEPARATOR . $folder_id,
+            BoxAccessPoints::FOLDER_INFO . BoxAccessPoints::URL_SEPARATOR . $folder_id,
             [
                 'headers' => [
                     "Authorization" => "Bearer " . $this->app_auth->getTokenInfo()->access_token
