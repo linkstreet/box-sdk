@@ -14,19 +14,22 @@ class FolderService extends BaseService
         parent::__construct($app_auth);
     }
 
+    /**
+     * Method to get folder info. Defaults to 0 which is the root folder.
+     * @param $folder_id id of the folder.
+     * @return GuzzleHttp\Psr7\Response
+     */
     public function getFolderInfo($folder_id = 0)
     {
         // Throws exception on 4XX response code
-        $response = $this->guzzle_client->request(
+        return $this->guzzle_client->request(
             'GET',
-            BoxAccessPoints::FOLDERINFO . $folder_id,
+            BoxAccessPoints::FOLDERINFO . BoxAccessPoints::URLSEPARATOR . $folder_id,
             [
                 'headers' => [
                     "Authorization" => "Bearer " . $this->app_auth->getTokenInfo()->access_token
                 ]
             ]
         );
-
-        // TODO: Marshall the response and return folder object.
     }
 }
