@@ -8,10 +8,21 @@ namespace Box\Enums;
  */
 abstract class BoxAccessPoints
 {
+
+    /**
+     * URL Separator
+     */
+    const URLSEPARATOR = "/";
+    
     /**
      * API base url
      */
     const APIBASEURL = "https://api.box.com";
+    
+    /**
+     * API base url
+     */
+    const APIUPLOADURL = "https://upload.box.com/api";
 
     /**
      * Access point version
@@ -27,4 +38,14 @@ abstract class BoxAccessPoints
      * Folder info API
      */
     const FOLDERINFO = SELF::APIBASEURL . SELF::APIVERSION . "/folders";
+
+    /**
+     * File upload API
+     */
+    const FILEUPLOAD = SELF::APIUPLOADURL . SELF::APIVERSION . "/files/content";
+
+    /**
+     * File upload preflight API
+     */
+    const FILEUPLOADPREFLIGHT = SELF::APIBASEURL . SELF::APIVERSION . "/files/content";
 }
