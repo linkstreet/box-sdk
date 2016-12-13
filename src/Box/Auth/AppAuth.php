@@ -34,11 +34,13 @@ class AppAuth
         $key = openssl_get_privatekey("file://".getcwd().'/' . $this->private_key, $this->pass_phrase);
 
         if ($key === false) {
+            // TODO: Move to separate exception
             throw new \Exception('Couldnt read key from "' . "file://".getcwd().'/' . $this->private_key . '" with pass phrase "' . $this->pass_phrase . '"');
         }
 
         $token = $claim->toArray();
 
+        // TODO: Move supported algorithms to enum
         $jwt = JWT::encode($token, $key, 'RS256', $this->key_id);
 
         // Exceptions documentation can be found in http://docs.guzzlephp.org/en/latest/quickstart.html#exceptions
