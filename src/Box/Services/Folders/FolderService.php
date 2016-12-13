@@ -43,7 +43,7 @@ class FolderService extends BaseService
     }
 
     /**
-     * @param $folder_name folder name to be created
+     * @param $folder_name string folder name to be created
      * @param $parent_folder_id int id of the parent folder. Defaults to root folder.
      * @return \GuzzleHttp\Psr7\Response
      */
