@@ -5,6 +5,7 @@ namespace Box\Services\Folders;
 use Box\Services\BaseService;
 use Box\Enums\BoxAccessPoints;
 use Box\Auth\AppAuth;
+use Webmozart\Assert\Assert;
 
 class FolderService extends BaseService
 {
@@ -29,6 +30,33 @@ class FolderService extends BaseService
                 'headers' => [
                     "Authorization" => "Bearer " . $this->app_auth->getTokenInfo()->access_token
                 ]
+            ]
+        );
+    }
+
+    /**
+     * @param $folder_name folder name to be created
+     * @param $parent_folder_id id of the parent folder. Defaults to root folder.
+     * @return GuzzleHttp\Psr7\Response
+     */
+    public function createFolder($folder_name, $parent_folder_id = 0)
+    {
+        $folder_name = trim($folder_name);
+        Assert::stringNotEmpty($folder_name, "The folder name must be string and not empty. Got: %s");
+        Assert::maxLength($folder_name, 255, "The folder name must be shorter than 255 chars. Got: %s");
+
+        // Throws exception on 4XX response code
+        return $this->guzzle_client->request(
+            'POST',
+            BoxAccessPoints::CREATE_FOLDER,
+            [
+                "json" => [
+                    "name" => $folder_name,
+                    "parent" => [
+                        "id" => (string)$parent_folder_id
+                    ]
+                ],
+                "headers" => $this->getAuthHeaders()
             ]
         );
     }
