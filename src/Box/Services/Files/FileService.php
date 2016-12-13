@@ -7,6 +7,7 @@ use Box\Enums\BoxAccessPoints;
 use Box\Exceptions\Files\FileNotFoundException;
 use Box\Services\BaseService;
 use Box\Auth\AppAuth;
+use Webmozart\Assert\Assert;
 
 class FileService extends BaseService
 {
@@ -68,6 +69,27 @@ class FileService extends BaseService
                 "headers" => $this->getAuthHeaders()
             ]
         );
+    }
+
+    /**
+     * Method to get embed url of a file
+     * @return String Embed url which has to be added to iframe source
+     */
+    public function getEmbedUrl($file_id)
+    {
+        Assert::integer($file_id, 'file_id has to be an integer. Got: %s');
+
+        $response = $this->guzzle_client->request(
+            'GET',
+            BoxAccessPoints::FILEEMBEDURL . BoxAccessPoints::URLSEPARATOR . $file_id . "?fields=expiring_embed_link",
+            [
+                "headers" => $this->getAuthHeaders()
+            ]
+        );
+
+        $response = json_decode($response->getBody()->getContents());
+
+        return $response->expiring_embed_link->url;
     }
 
     /**
