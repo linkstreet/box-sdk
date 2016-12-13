@@ -32,7 +32,7 @@ class FileService extends BaseService
      */
     public function uploadPreFlight($file_path = "", $folder_id = 0)
     {
-        $handle = $this->readFile($file_path);
+        $this->readFile($file_path);
 
         $file_name = basename($file_path);
 
