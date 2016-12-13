@@ -64,11 +64,11 @@ class Box
     {
         $this->validateAppAuthInfo($app_auth_info);
 
-        $this->claim = $this->createJWTClaim($app_auth_info);
+        $this->jwt_claim = $this->createJWTClaim($app_auth_info);
 
         $this->app_auth = new AppAuth(array_merge($app_auth_info, $this->client_info));
 
-        $this->app_auth->authenticate($this->claim);
+        $this->app_auth->authenticate($this->jwt_claim);
 
         return $this->app_auth;
     }
