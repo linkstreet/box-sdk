@@ -57,5 +57,5 @@ abstract class BoxAccessPoints
     /**
      * File get embed link API
      */
-    const FILE_EMBED_URL = SELF::APIBASEURL . SELF::APIVERSION . "/files";
+    const FILE_EMBED_URL = self::API_BASE_URL . self::API_VERSION . "/files";
 }
