@@ -9,14 +9,9 @@ use Box\Auth\AppAuth;
 class FolderService extends BaseService
 {
 
-    protected $app_auth;
-
     public function __construct(AppAuth $app_auth)
     {
-        parent::__construct();
-
-        $this->app_auth = $app_auth;
-
+        parent::__construct($app_auth);
     }
 
     public function getFolderInfo($folder_id = 0)
