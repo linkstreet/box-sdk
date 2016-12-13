@@ -2,10 +2,10 @@
 
 namespace Box;
 
-use Webmozart\Assert\Assert;
-use Box\Enums\SubscriptionType;
-use Box\Auth\JWTClaim;
 use Box\Auth\AppAuth;
+use Box\Auth\JWTClaim;
+use Box\Enums\SubscriptionType;
+use Webmozart\Assert\Assert;
 
 /**
  * Class Box
@@ -31,7 +31,7 @@ class Box
      * array
      */
     private $client_info = [];
-    
+
     /**
      * Validating and initializing client info
      * @param $client_info array
@@ -41,6 +41,18 @@ class Box
         $this->validateClientInfo($client_info);
 
         $this->client_info = $client_info;
+    }
+
+    /**
+     * Method to validate the $client_info
+     * @param $client_info array
+     */
+    private function validateClientInfo($client_info)
+    {
+        Assert::keyExists($client_info, 'client_id', 'Missing client id');
+        Assert::keyExists($client_info, 'client_secret', 'Missing client secret');
+        Assert::stringNotEmpty($client_info['client_id'], 'The client id must be string and not empty. Got: %s');
+        Assert::stringNotEmpty($client_info['client_secret'], 'The client id must be string and not empty. Got: %s');
     }
 
     /**
@@ -62,40 +74,6 @@ class Box
     }
 
     /**
-     * Method which creates JWTClaim
-     * @param $app_auth_info array
-     * @param $key_length Integer Defaults to 32
-     * @param $expiry_buffer int Should not be more than 60. Defaults to 10
-     * @return \Box\Auth\JWTClaim
-     */
-    protected function createJWTClaim($app_auth_info, $key_length = 32, $expiry_buffer = 10)
-    {
-        $unique_key = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($key_length/strlen($x)))), 1, $key_length);
-
-        $config = [
-            "iss" => $this->client_info['client_id'],
-            "sub" => $app_auth_info['id'],
-            "box_sub_type" => $app_auth_info['subscription_type'],
-            "jti" => $unique_key,
-            "exp" => (time() + (($expiry_buffer <= 60) ? $expiry_buffer: 60))
-        ];
-
-        return new JWTClaim($config);
-    }
-
-    /**
-     * Method to validate the $client_info
-     * @param $client_info array
-     */
-    private function validateClientInfo($client_info)
-    {
-        Assert::keyExists($client_info, 'client_id', 'Missing client id');
-        Assert::keyExists($client_info, 'client_secret', 'Missing client secret');
-        Assert::stringNotEmpty($client_info['client_id'], 'The client id must be string and not empty. Got: %s');
-        Assert::stringNotEmpty($client_info['client_secret'], 'The client id must be string and not empty. Got: %s');
-    }
-
-    /**
      * Method to validate the $app_auth_info
      * @param $app_auth_info array
      */
@@ -112,5 +90,27 @@ class Box
         Assert::notEmpty($app_auth_info['subscription_type'], 'Missing box subscription type. (Options are `enterprise` and `user`)');
 
         Assert::oneOf($app_auth_info['subscription_type'], [SubscriptionType::ENTERPRISE, SubscriptionType::USER], 'Wrong box subscription type. (Options are `enterprise` and `user`)');
+    }
+
+    /**
+     * Method which creates JWTClaim
+     * @param $app_auth_info array
+     * @param $key_length Integer Defaults to 32
+     * @param $expiry_buffer int Should not be more than 60. Defaults to 10
+     * @return \Box\Auth\JWTClaim
+     */
+    protected function createJWTClaim($app_auth_info, $key_length = 32, $expiry_buffer = 10)
+    {
+        $unique_key = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($key_length / strlen($x)))), 1, $key_length);
+
+        $config = [
+            "iss" => $this->client_info['client_id'],
+            "sub" => $app_auth_info['id'],
+            "box_sub_type" => $app_auth_info['subscription_type'],
+            "jti" => $unique_key,
+            "exp" => (time() + (($expiry_buffer <= 60) ? $expiry_buffer : 60))
+        ];
+
+        return new JWTClaim($config);
     }
 }

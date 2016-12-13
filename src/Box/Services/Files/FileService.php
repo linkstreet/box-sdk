@@ -2,11 +2,11 @@
 
 namespace Box\Services\Files;
 
-use Box\Enums\ExceptionMessages;
+use Box\Auth\AppAuth;
 use Box\Enums\BoxAccessPoints;
+use Box\Enums\ExceptionMessages;
 use Box\Exceptions\Files\FileNotFoundException;
 use Box\Services\BaseService;
-use Box\Auth\AppAuth;
 use Webmozart\Assert\Assert;
 
 /**
@@ -51,6 +51,21 @@ class FileService extends BaseService
                 "headers" => $this->getAuthHeaders()
             ]
         );
+    }
+
+    /**
+     * Returns the handle of fopen
+     * @param $file_path
+     * @return resource
+     * @throws FileNotFoundException
+     */
+    private function readFile($file_path)
+    {
+        if (!file_exists($file_path) || (($handle = fopen($file_path, 'r')) === false)) {
+            throw new FileNotFoundException(ExceptionMessages::FILE_NOT_FOUND . " (file : " . $file_path . ")");
+        }
+
+        return $handle;
     }
 
     /**
@@ -109,20 +124,5 @@ class FileService extends BaseService
         $response = json_decode($response->getBody()->getContents());
 
         return $response->expiring_embed_link->url;
-    }
-
-    /**
-     * Returns the handle of fopen
-     * @param $file_path
-     * @return resource
-     * @throws FileNotFoundException
-     */
-    private function readFile($file_path)
-    {
-        if (!file_exists($file_path) || (($handle = fopen($file_path, 'r')) === false)) {
-            throw new FileNotFoundException(ExceptionMessages::FILE_NOT_FOUND . " (file : ". $file_path .")");
-        }
-
-        return $handle;
     }
 }

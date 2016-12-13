@@ -2,9 +2,9 @@
 
 namespace Box\Services\Folders;
 
-use Box\Services\BaseService;
-use Box\Enums\BoxAccessPoints;
 use Box\Auth\AppAuth;
+use Box\Enums\BoxAccessPoints;
+use Box\Services\BaseService;
 use Webmozart\Assert\Assert;
 
 /**

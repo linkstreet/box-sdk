@@ -2,11 +2,11 @@
 
 namespace Box\Auth;
 
+use Box\Enums\GrantType;
+use Box\Services\Files\FileService;
+use Box\Services\Folders\FolderService;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client as GuzzleClient;
-use Box\Enums\GrantType;
-use Box\Services\Folders\FolderService;
-use Box\Services\Files\FileService;
 
 /**
  * Class AppAuth
@@ -16,19 +16,17 @@ class AppAuth
 {
 
     /**
-     * @var
-     */
-    private $token_info;
-
-    /**
      * @var FolderService
      */
     protected $folder_service = null;
-
     /**
      * @var FileService
      */
     protected $file_service = null;
+    /**
+     * @var
+     */
+    private $token_info;
 
     /**
      * AppAuth constructor.
@@ -53,11 +51,11 @@ class AppAuth
     public function authenticate(JWTClaim $claim)
     {
         // $key Has to be the key file handler opened using openssl method
-        $key = openssl_get_privatekey("file://".getcwd().'/' . $this->private_key, $this->pass_phrase);
+        $key = openssl_get_privatekey("file://" . getcwd() . '/' . $this->private_key, $this->pass_phrase);
 
         if ($key === false) {
             // TODO: Move to separate exception
-            throw new \Exception('Couldnt read key from "' . "file://".getcwd().'/' . $this->private_key . '" with pass phrase "' . $this->pass_phrase . '"');
+            throw new \Exception('Couldnt read key from "' . "file://" . getcwd() . '/' . $this->private_key . '" with pass phrase "' . $this->pass_phrase . '"');
         }
 
         $token = $claim->toArray();

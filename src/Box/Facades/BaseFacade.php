@@ -18,7 +18,7 @@ class BaseFacade
     {
 
         $invoked_class = get_called_class();
-        
+
         $invoked_class::initialize();
 
         switch (count($args)) {

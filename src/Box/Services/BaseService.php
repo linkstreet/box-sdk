@@ -2,8 +2,8 @@
 
 namespace Box\Services;
 
-use GuzzleHttp\Client as GuzzleClient;
 use Box\Auth\AppAuth;
+use GuzzleHttp\Client as GuzzleClient;
 
 /**
  * Class BaseService

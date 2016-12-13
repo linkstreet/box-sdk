@@ -13,12 +13,12 @@ abstract class BoxAccessPoints
      * URL Separator
      */
     const URL_SEPARATOR = "/";
-    
+
     /**
      * API base url
      */
     const API_BASE_URL = "https://api.box.com";
-    
+
     /**
      * API base url
      */
