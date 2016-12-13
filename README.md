@@ -4,6 +4,7 @@ So far this SDK has only machine to machine authentication mechanism and the fol
 
 #### Folders
 1. Get folder info
+2. Create folder
 
 #### Files
 1. Upload file
@@ -34,6 +35,7 @@ So far this SDK has only machine to machine authentication mechanism and the fol
 2. Methods available in `$folder_service`
     
         1. getFolderInfo($folder_id); // Defaults to root folder (id = 0)
+        2. createFolder($folder_name, $parent_folder_id = 0)
 
 #### File Service
 1. To get the service
