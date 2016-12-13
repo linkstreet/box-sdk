@@ -32,7 +32,7 @@ So far this SDK has only machine to machine authentication mechanism and the fol
 
 2. Methods available in `$folder_service`
     
-        1. getFolderInfo();
+        1. getFolderInfo($folder_id); // Defaults to root folder (id = 0)
 
 #### File Service
 1. To get the service
