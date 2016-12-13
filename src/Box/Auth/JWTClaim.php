@@ -4,8 +4,16 @@ namespace Box\Auth;
 
 use Box\Enums\BoxAccessPoints;
 
+/**
+ * Class JWTClaim
+ * @package Box\Auth
+ */
 class JWTClaim
 {
+    /**
+     * JWTClaim constructor.
+     * @param $options
+     */
     public function __construct($options)
     {
         $this->aud = BoxAccessPoints::OAUTH2_TOKEN;
@@ -14,6 +22,9 @@ class JWTClaim
         }
     }
 
+    /**
+     * @return array
+     */
     public function toArray()
     {
         // Can do this since it has only public properties.

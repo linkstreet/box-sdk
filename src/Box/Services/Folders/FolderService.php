@@ -7,9 +7,17 @@ use Box\Enums\BoxAccessPoints;
 use Box\Auth\AppAuth;
 use Webmozart\Assert\Assert;
 
+/**
+ * Class FolderService
+ * @package Box\Services\Folders
+ */
 class FolderService extends BaseService
 {
 
+    /**
+     * FolderService constructor.
+     * @param AppAuth $app_auth
+     */
     public function __construct(AppAuth $app_auth)
     {
         parent::__construct($app_auth);
@@ -17,8 +25,8 @@ class FolderService extends BaseService
 
     /**
      * Method to get folder info. Defaults to 0 which is the root folder.
-     * @param $folder_id id of the folder.
-     * @return GuzzleHttp\Psr7\Response
+     * @param $folder_id int id of the folder.
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function getFolderInfo($folder_id = 0)
     {
@@ -36,8 +44,8 @@ class FolderService extends BaseService
 
     /**
      * @param $folder_name folder name to be created
-     * @param $parent_folder_id id of the parent folder. Defaults to root folder.
-     * @return GuzzleHttp\Psr7\Response
+     * @param $parent_folder_id int id of the parent folder. Defaults to root folder.
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function createFolder($folder_name, $parent_folder_id = 0)
     {

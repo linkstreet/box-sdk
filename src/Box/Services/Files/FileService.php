@@ -9,14 +9,27 @@ use Box\Services\BaseService;
 use Box\Auth\AppAuth;
 use Webmozart\Assert\Assert;
 
+/**
+ * Class FileService
+ * @package Box\Services\Files
+ */
 class FileService extends BaseService
 {
 
+    /**
+     * FileService constructor.
+     * @param AppAuth $app_auth
+     */
     public function __construct(AppAuth $app_auth)
     {
         parent::__construct($app_auth);
     }
 
+    /**
+     * @param string $file_path
+     * @param int $folder_id
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
     public function uploadPreFlight($file_path = "", $folder_id = 0)
     {
         $handle = $this->readFile($file_path);
@@ -40,6 +53,11 @@ class FileService extends BaseService
         );
     }
 
+    /**
+     * @param string $file_path
+     * @param int $folder_id
+     * @return mixed|\Psr\Http\Message\ResponseInterface
+     */
     public function uploadFile($file_path = "", $folder_id = 0)
     {
         $handle = $this->readFile($file_path);
@@ -73,6 +91,7 @@ class FileService extends BaseService
 
     /**
      * Method to get embed url of a file
+     * @param $file_id int
      * @return String Embed url which has to be added to iframe source
      */
     public function getEmbedUrl($file_id)
@@ -94,11 +113,14 @@ class FileService extends BaseService
 
     /**
      * Returns the handle of fopen
+     * @param $file_path
+     * @return resource
+     * @throws FileNotFoundException
      */
     private function readFile($file_path)
     {
         if (!file_exists($file_path) || (($handle = fopen($file_path, 'r')) === false)) {
-            throw new FileNotFoundException(ExceptionMessages::FILENOTFOUND . " (file : ". $file_path .")");
+            throw new FileNotFoundException(ExceptionMessages::FILE_NOT_FOUND . " (file : ". $file_path .")");
         }
 
         return $handle;

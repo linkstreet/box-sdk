@@ -8,15 +8,32 @@ use Box\Enums\GrantType;
 use Box\Services\Folders\FolderService;
 use Box\Services\Files\FileService;
 
+/**
+ * Class AppAuth
+ * @package Box\Auth
+ */
 class AppAuth
 {
 
+    /**
+     * @var
+     */
     private $token_info;
 
+    /**
+     * @var FolderService
+     */
     protected $folder_service = null;
 
+    /**
+     * @var FileService
+     */
     protected $file_service = null;
 
+    /**
+     * AppAuth constructor.
+     * @param $app_auth_info
+     */
     public function __construct($app_auth_info)
     {
         $this->guzzle_client = new GuzzleClient();
@@ -28,6 +45,11 @@ class AppAuth
         }
     }
 
+    /**
+     * @param JWTClaim $claim
+     * @return mixed
+     * @throws \Exception
+     */
     public function authenticate(JWTClaim $claim)
     {
         // $key Has to be the key file handler opened using openssl method
@@ -61,12 +83,19 @@ class AppAuth
         return $this->getTokenInfo();
     }
 
+    /**
+     * @return mixed
+     */
     public function getTokenInfo()
     {
         // TODO: Validate if token is expired and then send
         return $this->token_info;
     }
 
+    /**
+     * @param bool $force_new_instance
+     * @return FileService|null
+     */
     public function getFileService($force_new_instance = false)
     {
         if (is_null($this->file_service) || $force_new_instance) {
@@ -76,6 +105,10 @@ class AppAuth
         return $this->file_service;
     }
 
+    /**
+     * @param bool $force_new_instance
+     * @return FolderService|null
+     */
     public function getFolderService($force_new_instance = false)
     {
         if (is_null($this->folder_service) || $force_new_instance) {

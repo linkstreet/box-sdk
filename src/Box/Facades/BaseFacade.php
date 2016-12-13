@@ -2,9 +2,18 @@
 
 namespace Box\Facades;
 
+/**
+ * Class BaseFacade
+ * @package Box\Facades
+ */
 class BaseFacade
 {
 
+    /**
+     * @param $method
+     * @param $args
+     * @return mixed
+     */
     public static function __callStatic($method, $args)
     {
 

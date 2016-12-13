@@ -7,6 +7,10 @@ use Box\Enums\SubscriptionType;
 use Box\Auth\JWTClaim;
 use Box\Auth\AppAuth;
 
+/**
+ * Class Box
+ * @package Box
+ */
 class Box
 {
 
@@ -24,13 +28,13 @@ class Box
 
     /**
      * Variable which holds client_id and client_secret
-     * Array
+     * array
      */
     private $client_info = [];
     
     /**
      * Validating and initializing client info
-     * @param $client_info Array
+     * @param $client_info array
      */
     public function __construct($client_info = [])
     {
@@ -41,8 +45,8 @@ class Box
 
     /**
      * Method which creates AppAuth client
-     * @param $app_auth_info Array
-     * @return Box\Auth\AppAuth
+     * @param $app_auth_info array
+     * @return \Box\Auth\AppAuth
      */
     public function getAppAuthClient($app_auth_info = [])
     {
@@ -59,10 +63,10 @@ class Box
 
     /**
      * Method which creates JWTClaim
-     * @param $app_auth_info Array
+     * @param $app_auth_info array
      * @param $key_length Integer Defaults to 32
-     * @param $expiry_buffer Interger Should not be more than 60. Defaults to 10
-     * @return Box\Auth\JWTClaim
+     * @param $expiry_buffer int Should not be more than 60. Defaults to 10
+     * @return \Box\Auth\JWTClaim
      */
     protected function createJWTClaim($app_auth_info, $key_length = 32, $expiry_buffer = 10)
     {
@@ -81,7 +85,7 @@ class Box
 
     /**
      * Method to validate the $client_info
-     * @throws \InvalidArgumentException
+     * @param $client_info array
      */
     private function validateClientInfo($client_info)
     {
@@ -93,7 +97,7 @@ class Box
 
     /**
      * Method to validate the $app_auth_info
-     * @throws \InvalidArgumentException
+     * @param $app_auth_info array
      */
     private function validateAppAuthInfo($app_auth_info)
     {
