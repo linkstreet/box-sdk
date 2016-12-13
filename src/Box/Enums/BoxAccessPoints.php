@@ -48,4 +48,9 @@ abstract class BoxAccessPoints
      * File upload preflight API
      */
     const FILEUPLOADPREFLIGHT = SELF::APIBASEURL . SELF::APIVERSION . "/files/content";
+
+    /**
+     * File get embeedlink API
+     */
+    const FILEEMBEDURL = SELF::APIBASEURL . SELF::APIVERSION . "/files";
 }
