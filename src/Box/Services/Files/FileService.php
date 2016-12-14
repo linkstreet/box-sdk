@@ -154,4 +154,23 @@ class FileService extends BaseService
             ]
         );
     }
+
+    /**
+     * Method to remove the file permanently from trash
+     * @param $file_id int ID of the file which has to be permanently deleted
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function destroyTrashedFile($file_id)
+    {
+        Assert::integer($file_id, 'file id has to be an integer. Got: %s');
+
+        return $this->guzzle_client->request(
+            'DELETE',
+            BAP::BASE_FILE_URL . BAP::URL_SEPARATOR . $file_id . BAP::URL_SEPARATOR . "trash",
+            [
+                "headers" => $this->getAuthHeaders()
+            ]
+        );
+
+    }
 }
