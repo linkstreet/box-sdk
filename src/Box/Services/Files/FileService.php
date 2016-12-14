@@ -3,7 +3,7 @@
 namespace Box\Services\Files;
 
 use Box\Auth\AppAuth;
-use Box\Enums\BoxAccessPoints;
+use Box\Enums\BoxAccessPoints as BAP;
 use Box\Enums\ExceptionMessages;
 use Box\Exceptions\Files\FileNotFoundException;
 use Box\Services\BaseService;
@@ -41,7 +41,7 @@ class FileService extends BaseService
         // Throws exception on 4XX response code
         return $this->guzzle_client->request(
             'OPTIONS',
-            BoxAccessPoints::FILE_UPLOAD_PREFLIGHT,
+            BAP::FILE_UPLOAD_PREFLIGHT,
             [
                 "json" => [
                     "name" => $file_name,
@@ -86,7 +86,7 @@ class FileService extends BaseService
 
         return $this->guzzle_client->request(
             'POST',
-            BoxAccessPoints::FILE_UPLOAD,
+            BAP::FILE_UPLOAD,
             [
                 "multipart" => [
                     [
@@ -119,7 +119,7 @@ class FileService extends BaseService
 
         $response = $this->guzzle_client->request(
             'GET',
-            BoxAccessPoints::FILE_EMBED_URL . BoxAccessPoints::URL_SEPARATOR . $file_id . "?fields=expiring_embed_link",
+            BAP::BASE_FILE_URL . BAP::URL_SEPARATOR . $file_id . "?fields=expiring_embed_link",
             [
                 "headers" => $this->getAuthHeaders()
             ]
