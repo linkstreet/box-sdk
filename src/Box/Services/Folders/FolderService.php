@@ -3,7 +3,7 @@
 namespace Box\Services\Folders;
 
 use Box\Auth\AppAuth;
-use Box\Enums\BoxAccessPoints;
+use Box\Enums\BoxAccessPoints as BAP;
 use Box\Services\BaseService;
 use Webmozart\Assert\Assert;
 
@@ -35,7 +35,7 @@ class FolderService extends BaseService
 
         return $this->guzzle_client->request(
             'GET',
-            BoxAccessPoints::FOLDER_INFO . BoxAccessPoints::URL_SEPARATOR . $folder_id,
+            BAP::FOLDER_INFO . BAP::URL_SEPARATOR . $folder_id,
             [
                 'headers' => [
                     "Authorization" => "Bearer " . $this->app_auth->getTokenInfo()->access_token
@@ -59,7 +59,7 @@ class FolderService extends BaseService
         // Throws exception on 4XX response code
         return $this->guzzle_client->request(
             'POST',
-            BoxAccessPoints::CREATE_FOLDER,
+            BAP::CREATE_FOLDER,
             [
                 "json" => [
                     "name" => $folder_name,
@@ -84,7 +84,7 @@ class FolderService extends BaseService
 
         return $this->guzzle_client->request(
             'GET',
-            BoxAccessPoints::FOLDER_INFO . BoxAccessPoints::URL_SEPARATOR . $folder_id . BoxAccessPoints::URL_SEPARATOR . "items",
+            BAP::FOLDER_INFO . BAP::URL_SEPARATOR . $folder_id . BAP::URL_SEPARATOR . "items",
             [
                 'headers' => [
                     "Authorization" => "Bearer " . $this->app_auth->getTokenInfo()->access_token
