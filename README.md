@@ -47,3 +47,8 @@ So far this SDK has only machine to machine authentication mechanism and the fol
         1. uploadPreFlight($file_path = "", $folder_id = 0);
         2. uploadFile($file_path = "", $folder_id = 0);
         3. getEmbedUrl($file_id)
+          
+        
+##### NOTE:
+
+1. Guzzle related exceptions and its documentation can be found in [Guzzle Docs](http://docs.guzzlephp.org/en/latest/quickstart.html#exceptions)
