@@ -76,7 +76,7 @@ class FileService extends BaseService
      * @param int $folder_id
      * @return \GuzzleHttp\Psr7\Response
      */
-    public function uploadFile($file_path = "", $folder_id = 0)
+    public function upload($file_path = "", $folder_id = 0)
     {
         Assert::integerish($folder_id, "The folder id must be an integer. Got: %s");
 
