@@ -28,7 +28,7 @@ class FileService extends BaseService
     /**
      * @param string $file_path
      * @param int $folder_id
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function uploadPreFlight($file_path = "", $folder_id = 0)
     {
@@ -71,7 +71,7 @@ class FileService extends BaseService
     /**
      * @param string $file_path
      * @param int $folder_id
-     * @return mixed|\Psr\Http\Message\ResponseInterface
+     * @return \GuzzleHttp\Psr7\Response
      */
     public function uploadFile($file_path = "", $folder_id = 0)
     {
