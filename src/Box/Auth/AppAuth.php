@@ -92,7 +92,7 @@ class AppAuth
 
     /**
      * @param bool $force_new_instance
-     * @return FileService|null
+     * @return FileService
      */
     public function getFileService($force_new_instance = false)
     {
@@ -105,7 +105,7 @@ class AppAuth
 
     /**
      * @param bool $force_new_instance
-     * @return FolderService|null
+     * @return FolderService
      */
     public function getFolderService($force_new_instance = false)
     {
