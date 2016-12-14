@@ -69,6 +69,7 @@ class FileService extends BaseService
     }
 
     /**
+     * Method to upload the file. By default it uploads to the root folder which is id 0
      * @param string $file_path
      * @param int $folder_id
      * @return \GuzzleHttp\Psr7\Response
@@ -79,7 +80,6 @@ class FileService extends BaseService
 
         $file_name = basename($file_path);
 
-        // Throws exception on 4XX response code
         return $this->guzzle_client->request(
             'POST',
             BoxAccessPoints::FILE_UPLOAD,
@@ -107,7 +107,7 @@ class FileService extends BaseService
     /**
      * Method to get embed url of a file
      * @param $file_id int
-     * @return String Embed url which has to be added to iframe source
+     * @return String Embed url which has to be added to i-frame source
      */
     public function getEmbedUrl($file_id)
     {
