@@ -2,3 +2,5 @@
 vendor
 index.php
 .idea
+secrets
+documents
