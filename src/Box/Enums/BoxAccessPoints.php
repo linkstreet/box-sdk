@@ -35,9 +35,9 @@ abstract class BoxAccessPoints
     const OAUTH2_TOKEN = self::API_BASE_URL . "/oauth2/token";
 
     /**
-     * Folder info API
+     * Base folder API
      */
-    const FOLDER_INFO = self::API_BASE_URL . self::API_VERSION . "/folders";
+    const BASE_FOLDER_URL = self::API_BASE_URL . self::API_VERSION . "/folders";
 
     /**
      * File upload API
@@ -50,12 +50,7 @@ abstract class BoxAccessPoints
     const FILE_UPLOAD_PREFLIGHT = self::API_BASE_URL . self::API_VERSION . "/files/content";
 
     /**
-     * Create folder API
+     * Base file API
      */
-    const CREATE_FOLDER = self::API_BASE_URL . self::API_VERSION . "/folders";
-
-    /**
-     * File get embed link API
-     */
-    const FILE_EMBED_URL = self::API_BASE_URL . self::API_VERSION . "/files";
+    const BASE_FILE_URL = self::API_BASE_URL . self::API_VERSION . "/files";
 }
