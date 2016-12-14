@@ -30,7 +30,8 @@ class FolderService extends BaseService
      */
     public function getFolderInfo($folder_id = 0)
     {
-        // Throws exception on 4XX response code
+        Assert::integerish($folder_id, "The folder id must be an integer. Got: %s");
+
         return $this->guzzle_client->request(
             'GET',
             BoxAccessPoints::FOLDER_INFO . BoxAccessPoints::URL_SEPARATOR . $folder_id,
