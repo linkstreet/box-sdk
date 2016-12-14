@@ -129,4 +129,29 @@ class FileService extends BaseService
 
         return $response->expiring_embed_link->url;
     }
+
+    /**
+     * Method to move a file to trash
+     * @param $file_id id ID of the file to be moved
+     * @param $e_tag string Etag of the uploaded file. This param is to prevent accidental delete in race conditions
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function delete($file_id, $e_tag = null)
+    {
+        Assert::integer($file_id, 'file id has to be an integer. Got: %s');
+
+        $headers = $this->getAuthHeaders();
+
+        if (!is_null($e_tag)) {
+            $headers = array_merge($headers, ["If-Match" => $e_tag]);
+        }
+
+        return $this->guzzle_client->request(
+            'DELETE',
+            BAP::BASE_FILE_URL . BAP::URL_SEPARATOR . $file_id,
+            [
+                "headers" => $headers
+            ]
+        );
+    }
 }
