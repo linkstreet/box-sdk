@@ -68,4 +68,25 @@ class FolderService extends BaseService
             ]
         );
     }
+
+    /**
+     * Method to get items inside a folder. Same info can be found inside `getFolderInfo` method as well.
+     * @param $folder_id int Id of the folder for which the items has to be listed.
+     * @throws \InvalidArgumentException
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function getFolderItems($folder_id = 0)
+    {
+        Assert::integerish($folder_id, "The folder id must be an integer. Got: %s");
+
+        return $this->guzzle_client->request(
+            'GET',
+            BoxAccessPoints::FOLDER_INFO . BoxAccessPoints::URL_SEPARATOR . $folder_id . BoxAccessPoints::URL_SEPARATOR . "items",
+            [
+                'headers' => [
+                    "Authorization" => "Bearer " . $this->app_auth->getTokenInfo()->access_token
+                ]
+            ]
+        );
+    }
 }
