@@ -35,7 +35,7 @@ class FolderService extends BaseService
 
         return $this->guzzle_client->request(
             'GET',
-            BAP::FOLDER_INFO . BAP::URL_SEPARATOR . $folder_id,
+            BAP::BASE_FOLDER_URL . BAP::URL_SEPARATOR . $folder_id,
             [
                 'headers' => [
                     "Authorization" => "Bearer " . $this->app_auth->getTokenInfo()->access_token
@@ -59,7 +59,7 @@ class FolderService extends BaseService
         // Throws exception on 4XX response code
         return $this->guzzle_client->request(
             'POST',
-            BAP::CREATE_FOLDER,
+            BAP::BASE_FOLDER_URL,
             [
                 "json" => [
                     "name" => $folder_name,
@@ -84,7 +84,7 @@ class FolderService extends BaseService
 
         return $this->guzzle_client->request(
             'GET',
-            BAP::FOLDER_INFO . BAP::URL_SEPARATOR . $folder_id . BAP::URL_SEPARATOR . "items",
+            BAP::BASE_FOLDER_URL . BAP::URL_SEPARATOR . $folder_id . BAP::URL_SEPARATOR . "items",
             [
                 'headers' => [
                     "Authorization" => "Bearer " . $this->app_auth->getTokenInfo()->access_token
