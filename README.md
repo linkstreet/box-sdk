@@ -1,6 +1,6 @@
 ## Box Api v2.0 SDK under development.
 
-So far this SDK has only machine to machine authentication mechanism and the following functionalities
+So far this SDK has only machine to machine authentication mechanism and the following functionality
 
 #### Folders
 1. Get folder info

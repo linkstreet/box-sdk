@@ -55,7 +55,7 @@ class AppAuth
 
         if ($key === false) {
             // TODO: Move to separate exception
-            throw new \Exception('Couldnt read key from "' . "file://" . getcwd() . '/' . $this->private_key . '" with pass phrase "' . $this->pass_phrase . '"');
+            throw new \Exception('Could not read key from "' . "file://" . getcwd() . '/' . $this->private_key . '" with pass phrase "' . $this->pass_phrase . '"');
         }
 
         $token = $claim->toArray();
