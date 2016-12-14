@@ -32,6 +32,8 @@ class FileService extends BaseService
      */
     public function uploadPreFlight($file_path = "", $folder_id = 0)
     {
+        Assert::integerish($folder_id, "The folder id must be an integer. Got: %s");
+
         $this->readFile($file_path);
 
         $file_name = basename($file_path);
@@ -76,6 +78,8 @@ class FileService extends BaseService
      */
     public function uploadFile($file_path = "", $folder_id = 0)
     {
+        Assert::integerish($folder_id, "The folder id must be an integer. Got: %s");
+
         $handle = $this->readFile($file_path);
 
         $file_name = basename($file_path);
@@ -105,13 +109,13 @@ class FileService extends BaseService
     }
 
     /**
-     * Method to get embed url of a file
+     * Method to get embed url of an uploaded file
      * @param $file_id int
      * @return String Embed url which has to be added to i-frame source
      */
     public function getEmbedUrl($file_id)
     {
-        Assert::integer($file_id, 'file_id has to be an integer. Got: %s');
+        Assert::integer($file_id, 'file id has to be an integer. Got: %s');
 
         $response = $this->guzzle_client->request(
             'GET',
