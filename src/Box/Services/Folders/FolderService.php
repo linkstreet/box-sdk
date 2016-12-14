@@ -26,6 +26,7 @@ class FolderService extends BaseService
     /**
      * Method to get folder info. Defaults to 0 which is the root folder.
      * @param $folder_id int id of the folder.
+     * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Response
      */
     public function getFolderInfo($folder_id = 0)
@@ -46,6 +47,7 @@ class FolderService extends BaseService
     /**
      * @param $folder_name string folder name to be created
      * @param $parent_folder_id int id of the parent folder. Defaults to root folder.
+     * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Response
      */
     public function createFolder($folder_name, $parent_folder_id = 0)
