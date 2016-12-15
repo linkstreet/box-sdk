@@ -50,7 +50,7 @@ class FolderService extends BaseService
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Response
      */
-    public function createFolder($folder_name, $parent_folder_id = 0)
+    public function create($folder_name, $parent_folder_id = 0)
     {
         $folder_name = trim($folder_name);
         Assert::stringNotEmpty($folder_name, "The folder name must be string and not empty. Got: %s");

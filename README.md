@@ -38,7 +38,7 @@ So far this SDK has only machine to machine authentication mechanism and the fol
     
         1. getFolderInfo($folder_id); // Defaults to root folder (id = 0)
         2. getFolderItems($folder_id); // Defaults to root folder (id = 0)
-        3. createFolder($folder_name, $parent_folder_id = 0)
+        3. create($folder_name, $parent_folder_id = 0)
 
 #### File Service
 1. To get the service
