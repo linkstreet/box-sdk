@@ -163,14 +163,14 @@ class FolderService extends BaseService
     /**
      * Method to restore the folder from trash.
      * CAUTION : Parent id is only taken into consideration if the current parent folder is deleted or
-     * an item with same name is already there in parent folder.
+     * a folder (or a file) with same name is already present in parent folder.
      * 201 on success
      * 403 on access denied
      * 405 on not found in trash
-     * 409 on parent folder already having file with same name
+     * 409 on parent folder already having a folder or a file with same name
      * @param $trashed_folder_id integer ID of the trashed folder
      * @param $new_name null|string Renaming the folder on the fly.
-     * @param $parent_folder_id null|integer Parent folder ID for which the file will be restored to
+     * @param $parent_folder_id null|integer Parent folder ID for which the folder will be restored to
      * @return \GuzzleHttp\Psr7\Response
      */
     public function restore($trashed_folder_id, $new_name = null, $parent_folder_id = null)
