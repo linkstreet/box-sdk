@@ -6,12 +6,16 @@ So far this SDK has only machine to machine authentication mechanism and the fol
 1. Get folder info
 2. Get folder items
 3. Create folder
+4. Delete folder
+5. Get trashed items
+6. Destroy trashed folder
 
 #### Files
 1. Upload file
 2. Upload Pre flight - This API is used to check if the metadata supplied is valid or not.
 3. Get embed URL
 4. Delete a file (soft delete - Moves to trash)
+5. Destroy trashed file
 
 ### Usage
 
@@ -39,6 +43,9 @@ So far this SDK has only machine to machine authentication mechanism and the fol
         1. getFolderInfo($folder_id); // Defaults to root folder (id = 0)
         2. getFolderItems($folder_id); // Defaults to root folder (id = 0)
         3. create($folder_name, $parent_folder_id = 0)
+        4. delete($folder_id, $recursive = false, $e_tag = null)
+        5. getTrashedItems()
+        6. destroyTrashedFolder($folder_id)
 
 #### File Service
 1. To get the service
@@ -51,6 +58,7 @@ So far this SDK has only machine to machine authentication mechanism and the fol
         2. upload($file_path = "", $folder_id = 0);
         3. getEmbedUrl($file_id)
         4. delete($file_id)
+        5. destroyTrashedFile($file_id)
           
         
 ##### NOTE:
