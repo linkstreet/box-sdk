@@ -133,7 +133,7 @@ class FileService extends BaseService
     /**
      * Method to move a file to trash
      * @param $file_id integer ID of the file to be moved
-     * @param $e_tag string Etag of the uploaded file. This param is to prevent accidental delete in race conditions
+     * @param $e_tag string E-tag of the uploaded file. This param is to prevent accidental delete in race conditions
      * @return \GuzzleHttp\Psr7\Response
      */
     public function delete($file_id, $e_tag = null)
