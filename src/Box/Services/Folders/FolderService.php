@@ -140,4 +140,23 @@ class FolderService extends BaseService
             ]
         );
     }
+
+    /**
+     * Method to remove the folder permanently from trash.
+     * Returns 204 on success and 404 on file not found in trash
+     * @param $folder_id integer ID of the folder which has to be deleted
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function destroyTrashedFolder($folder_id)
+    {
+        Assert::integer($folder_id, "The folder id must be an integer. Got: %s");
+
+        return $this->guzzle_client->request(
+            'DELETE',
+            BAP::BASE_FOLDER_URL . BAP::URL_SEPARATOR . $folder_id  . BAP::URL_SEPARATOR . "trash",
+            [
+                "headers" => $this->getAuthHeaders()
+            ]
+        );
+    }
 }
