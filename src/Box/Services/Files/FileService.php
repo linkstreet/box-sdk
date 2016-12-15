@@ -171,6 +171,5 @@ class FileService extends BaseService
                 "headers" => $this->getAuthHeaders()
             ]
         );
-
     }
 }
