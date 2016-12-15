@@ -92,4 +92,35 @@ class FolderService extends BaseService
             ]
         );
     }
+
+    /**
+     * Method to delete folder from box
+     * @param $folder_id integer ID of the folder which has to be deleted
+     * @param $recursive bool
+     * @param $e_tag null
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function delete($folder_id, $recursive = false, $e_tag = null)
+    {
+        Assert::integer($folder_id, "The folder id must be an integer. Got: %s");
+
+        $query = "";
+        if ($recursive === true) {
+            $query = "?recursive=true";
+        }
+
+        $headers = $this->getAuthHeaders();
+
+        if (!is_null($e_tag)) {
+            $headers = array_merge($headers, ["If-Match" => $e_tag]);
+        }
+
+        return $this->guzzle_client->request(
+            'DELETE',
+            BAP::BASE_FOLDER_URL . BAP::URL_SEPARATOR . $folder_id . $query,
+            [
+                "headers" => $headers
+            ]
+        );
+    }
 }
