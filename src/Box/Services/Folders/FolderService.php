@@ -123,4 +123,21 @@ class FolderService extends BaseService
             ]
         );
     }
+
+    /**
+     * Method to list all the trashed folders and files.
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function getTrashedItems()
+    {
+        return $this->guzzle_client->request(
+            'GET',
+            BAP::BASE_FOLDER_URL . BAP::URL_SEPARATOR . "trash" . BAP::URL_SEPARATOR . "items",
+            [
+                'headers' => [
+                    "Authorization" => "Bearer " . $this->app_auth->getTokenInfo()->access_token
+                ]
+            ]
+        );
+    }
 }
