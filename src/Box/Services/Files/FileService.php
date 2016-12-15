@@ -172,4 +172,45 @@ class FileService extends BaseService
             ]
         );
     }
+
+    /**
+     * Method to restore the file from trash.
+     * CAUTION : Parent id is only taken into consideration if the current parent folder is deleted or
+     * a folder (or a file) with same name is already there in parent folder.
+     * 201 on success
+     * 403 on access denied
+     * 404 on file not found in trash
+     * 409 on parent folder already having a folder or a file with same name
+     * @param $trashed_file_id integer ID of the trashed file
+     * @param $new_name null|string Renaming the file on the fly.
+     * @param $parent_folder_id null|integer Parent folder ID for which the file will be restored to
+     * @return \GuzzleHttp\Psr7\Response
+     */
+    public function restore($trashed_file_id, $new_name = null, $parent_folder_id = null)
+    {
+        Assert::integer($trashed_file_id, "The file id must be integer. Got: %s");
+
+        $payload = [];
+
+        if (!is_null($parent_folder_id)) {
+            Assert::integer($parent_folder_id, "The parent id must be integer. Got: %s");
+            $payload['parent'] = [
+                "id" => (string)$parent_folder_id
+            ];
+        }
+
+        if (!is_null($new_name)) {
+            $payload['name'] = $new_name;
+        }
+
+        // Throws exception on 4XX response code
+        return $this->guzzle_client->request(
+            'POST',
+            BAP::BASE_FILE_URL . BAP::URL_SEPARATOR . $trashed_file_id,
+            [
+                "json" => $payload,
+                "headers" => $this->getAuthHeaders()
+            ]
+        );
+    }
 }
