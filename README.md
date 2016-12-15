@@ -9,6 +9,7 @@ So far this SDK has only machine to machine authentication mechanism and the fol
 4. Delete folder
 5. Get trashed items
 6. Destroy trashed folder
+7. Restore the trashed folder
 
 #### Files
 1. Upload file
@@ -46,6 +47,7 @@ So far this SDK has only machine to machine authentication mechanism and the fol
         4. delete($folder_id, $recursive = false, $e_tag = null)
         5. getTrashedItems()
         6. destroyTrashedFolder($folder_id)
+        7. restore($trashed_folder_id, $new_name = null, $parent_folder_id = null)
 
 #### File Service
 1. To get the service
