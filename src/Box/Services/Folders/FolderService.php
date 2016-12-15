@@ -25,7 +25,7 @@ class FolderService extends BaseService
 
     /**
      * Method to get folder info. Defaults to 0 which is the root folder.
-     * @param $folder_id int id of the folder.
+     * @param $folder_id integer id of the folder.
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Response
      */
@@ -46,7 +46,7 @@ class FolderService extends BaseService
 
     /**
      * @param $folder_name string folder name to be created
-     * @param $parent_folder_id int id of the parent folder. Defaults to root folder.
+     * @param $parent_folder_id integer id of the parent folder. Defaults to root folder.
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Response
      */
@@ -74,7 +74,7 @@ class FolderService extends BaseService
 
     /**
      * Method to get items inside a folder. Same info can be found inside `getFolderInfo` method as well.
-     * @param $folder_id int Id of the folder for which the items has to be listed.
+     * @param $folder_id integer Id of the folder for which the items has to be listed.
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Response
      */

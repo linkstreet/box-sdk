@@ -26,8 +26,8 @@ class FileService extends BaseService
     }
 
     /**
-     * @param string $file_path
-     * @param int $folder_id
+     * @param $file_path string
+     * @param $folder_id integer
      * @return \GuzzleHttp\Psr7\Response
      */
     public function uploadPreFlight($file_path = "", $folder_id = 0)
@@ -110,7 +110,7 @@ class FileService extends BaseService
 
     /**
      * Method to get embed url of an uploaded file
-     * @param $file_id int
+     * @param $file_id integer
      * @return String Embed url which has to be added to i-frame source
      */
     public function getEmbedUrl($file_id)
@@ -132,7 +132,7 @@ class FileService extends BaseService
 
     /**
      * Method to move a file to trash
-     * @param $file_id id ID of the file to be moved
+     * @param $file_id integer ID of the file to be moved
      * @param $e_tag string Etag of the uploaded file. This param is to prevent accidental delete in race conditions
      * @return \GuzzleHttp\Psr7\Response
      */
@@ -157,7 +157,7 @@ class FileService extends BaseService
 
     /**
      * Method to remove the file permanently from trash
-     * @param $file_id int ID of the file which has to be permanently deleted
+     * @param $file_id integer ID of the file which has to be permanently deleted
      * @return \GuzzleHttp\Psr7\Response
      */
     public function destroyTrashedFile($file_id)
