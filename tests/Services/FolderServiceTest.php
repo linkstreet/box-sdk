@@ -15,9 +15,7 @@ class FolderServiceTest extends Base
     public function testGetFolderInfo()
     {
         $folder_service = $this->app_auth->getFolderService();
-        $response = $folder_service->getFolderInfo();
-
-        $json_object = json_decode($response->getBody()->getContents());
+        $json_object = json_decode($folder_service->getFolderInfo()->getBody()->getContents());
 
         $this->assertObjectHasAttribute('id', $json_object);
         $this->assertEquals('0', $json_object->id);
