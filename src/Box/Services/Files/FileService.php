@@ -1,17 +1,17 @@
 <?php
 
-namespace Box\Services\Files;
+namespace Linkstreet\Box\Services\Files;
 
-use Box\Auth\AppAuth;
-use Box\Enums\BoxAccessPoints as BAP;
-use Box\Enums\ExceptionMessages;
-use Box\Exceptions\Files\FileNotFoundException;
-use Box\Services\BaseService;
+use Linkstreet\Box\Auth\AppAuth;
+use Linkstreet\Box\Enums\BoxAccessPoints as BAP;
+use Linkstreet\Box\Enums\ExceptionMessages;
+use Linkstreet\Box\Exceptions\Files\FileNotFoundException;
+use Linkstreet\Box\Services\BaseService;
 use Webmozart\Assert\Assert;
 
 /**
  * Class FileService
- * @package Box\Services\Files
+ * @package Linkstreet\Box\Services\Files
  */
 class FileService extends BaseService
 {

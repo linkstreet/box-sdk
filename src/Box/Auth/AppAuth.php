@@ -1,16 +1,16 @@
 <?php
 
-namespace Box\Auth;
+namespace Linkstreet\Box\Auth;
 
-use Box\Enums\GrantType;
-use Box\Services\Files\FileService;
-use Box\Services\Folders\FolderService;
+use Linkstreet\Box\Enums\GrantType;
+use Linkstreet\Box\Services\Files\FileService;
+use Linkstreet\Box\Services\Folders\FolderService;
 use Firebase\JWT\JWT;
 use GuzzleHttp\Client as GuzzleClient;
 
 /**
  * Class AppAuth
- * @package Box\Auth
+ * @package Linkstreet\Box\Auth
  */
 class AppAuth
 {

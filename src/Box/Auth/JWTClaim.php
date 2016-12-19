@@ -1,12 +1,12 @@
 <?php
 
-namespace Box\Auth;
+namespace Linkstreet\Box\Auth;
 
-use Box\Enums\BoxAccessPoints;
+use Linkstreet\Box\Enums\BoxAccessPoints;
 
 /**
  * Class JWTClaim
- * @package Box\Auth
+ * @package Linkstreet\Box\Auth
  */
 class JWTClaim
 {

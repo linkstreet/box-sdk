@@ -1,12 +1,12 @@
 <?php
 
-namespace Box\Exceptions;
+namespace Linkstreet\Box\Exceptions;
 
 use Exception;
 
 /**
  * Class BaseException
- * @package Box\Exceptions
+ * @package Linkstreet\Box\Exceptions
  */
 class BaseException extends Exception
 {

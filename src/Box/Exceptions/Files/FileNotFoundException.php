@@ -1,13 +1,13 @@
 <?php
 
-namespace Box\Exceptions\Files;
+namespace Linkstreet\Box\Exceptions\Files;
 
-use Box\Enums\ExceptionMessages;
-use Box\Exceptions\BaseException;
+use Linkstreet\Box\Enums\ExceptionMessages;
+use Linkstreet\Box\Exceptions\BaseException;
 
 /**
  * Class FileNotFoundException
- * @package Box\Exceptions\Files
+ * @package Linkstreet\Box\Exceptions\Files
  */
 class FileNotFoundException extends BaseException
 {

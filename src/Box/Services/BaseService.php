@@ -1,13 +1,13 @@
 <?php
 
-namespace Box\Services;
+namespace Linkstreet\Box\Services;
 
-use Box\Auth\AppAuth;
+use Linkstreet\Box\Auth\AppAuth;
 use GuzzleHttp\Client as GuzzleClient;
 
 /**
  * Class BaseService
- * @package Box\Services
+ * @package Linkstreet\Box\Services
  */
 class BaseService
 {

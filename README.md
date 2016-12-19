@@ -20,6 +20,8 @@ So far this SDK has only machine to machine authentication mechanism and the fol
 
 ### Usage
 
+    use Linkstreet\Box;
+
     $box_sdk = new Box(['client_id' => "", "client_secret" => ""]);
 
     $app_auth_info = [

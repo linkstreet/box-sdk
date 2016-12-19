@@ -1,10 +1,10 @@
 <?php
 
-namespace Box;
+namespace Linkstreet\Box;
 
-use Box\Auth\AppAuth;
-use Box\Auth\JWTClaim;
-use Box\Enums\SubscriptionType;
+use Linkstreet\Box\Auth\AppAuth;
+use Linkstreet\Box\Auth\JWTClaim;
+use Linkstreet\Box\Enums\SubscriptionType;
 use Webmozart\Assert\Assert;
 
 /**
@@ -16,13 +16,13 @@ class Box
 
     /**
      * Variable which holds the app auth instance
-     * Box\Auth\AppAuth
+     * Linkstreet\Box\Auth\AppAuth
      */
     protected $app_auth;
 
     /**
      * Variable which holds the jwt claim instance
-     * Box\Auth\JWTClaim
+     * Linkstreet\Box\Auth\JWTClaim
      */
     protected $jwt_claim = null;
 
@@ -58,7 +58,7 @@ class Box
     /**
      * Method which creates AppAuth client
      * @param $app_auth_info array
-     * @return \Box\Auth\AppAuth
+     * @return \Linkstreet\Box\Auth\AppAuth
      */
     public function getAppAuthClient($app_auth_info = [])
     {
@@ -97,7 +97,7 @@ class Box
      * @param $app_auth_info array
      * @param $key_length Integer Defaults to 32
      * @param $expiry_buffer int Should not be more than 60. Defaults to 10
-     * @return \Box\Auth\JWTClaim
+     * @return \Linkstreet\Box\Auth\JWTClaim
      */
     protected function createJWTClaim($app_auth_info, $key_length = 32, $expiry_buffer = 10)
     {

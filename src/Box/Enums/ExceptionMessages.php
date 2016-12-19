@@ -1,10 +1,10 @@
 <?php
 
-namespace Box\Enums;
+namespace Linkstreet\Box\Enums;
 
 /**
  * Class ExceptionMessages
- * @package Box\Enums
+ * @package Linkstreet\Box\Enums
  */
 abstract class ExceptionMessages
 {

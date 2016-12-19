@@ -2,8 +2,8 @@
 namespace Tests;
 
 use Symfony\Component\Yaml\Yaml;
-use Box\Box;
-use Box\Auth\AppAuth;
+use Linkstreet\Box\Box;
+use Linkstreet\Box\Auth\AppAuth;
 
 /**
  * Class Base

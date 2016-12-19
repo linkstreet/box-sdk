@@ -1,15 +1,15 @@
 <?php
 
-namespace Box\Services\Folders;
+namespace Linkstreet\Box\Services\Folders;
 
-use Box\Auth\AppAuth;
-use Box\Enums\BoxAccessPoints as BAP;
-use Box\Services\BaseService;
+use Linkstreet\Box\Auth\AppAuth;
+use Linkstreet\Box\Enums\BoxAccessPoints as BAP;
+use Linkstreet\Box\Services\BaseService;
 use Webmozart\Assert\Assert;
 
 /**
  * Class FolderService
- * @package Box\Services\Folders
+ * @package Linkstreet\Box\Services\Folders
  */
 class FolderService extends BaseService
 {

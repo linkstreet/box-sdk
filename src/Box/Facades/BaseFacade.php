@@ -1,10 +1,10 @@
 <?php
 
-namespace Box\Facades;
+namespace Linkstreet\Box\Facades;
 
 /**
  * Class BaseFacade
- * @package Box\Facades
+ * @package Linkstreet\Box\Facades
  */
 class BaseFacade
 {
