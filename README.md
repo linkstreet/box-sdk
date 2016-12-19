@@ -17,6 +17,7 @@ So far this SDK has only machine to machine authentication mechanism and the fol
 3. Get embed URL
 4. Delete a file (soft delete - Moves to trash)
 5. Destroy trashed file
+6. Restore the trashed file
 
 ### Usage
 
@@ -63,8 +64,10 @@ So far this SDK has only machine to machine authentication mechanism and the fol
         3. getEmbedUrl($file_id)
         4. delete($file_id)
         5. destroyTrashedFile($file_id)
+        6. restore($trashed_file_id, $new_name = null, $parent_folder_id = null)
           
         
 ##### NOTE:
 
-1. Guzzle related exceptions and its documentation can be found in [Guzzle Docs](http://docs.guzzlephp.org/en/latest/quickstart.html#exceptions)
+1. All APIs return `\GuzzleHttp\Psr7\Response` (to get the body use `$response->getBody()->getContents()`. Refer [Guzzle HTTP Messages](http://docs.guzzlephp.org/en/latest/psr7.html#responses)) except `getEmbedUrl($file_id)` which returns string. 
+2. Guzzle related exceptions and its documentation can be found in [Guzzle Docs](http://docs.guzzlephp.org/en/latest/quickstart.html#exceptions)
