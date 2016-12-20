@@ -9,6 +9,8 @@ namespace Linkstreet\Box\Enums;
 abstract class BoxAccessPoints
 {
 
+    // TODO: Revert this commit for php version 5.6
+
     /**
      * URL Separator
      */
@@ -32,25 +34,25 @@ abstract class BoxAccessPoints
     /**
      * oAuth2 token end point.
      */
-    const OAUTH2_TOKEN = self::API_BASE_URL . "/oauth2/token";
+    const OAUTH2_TOKEN = "https://api.box.com/oauth2/token";
 
     /**
      * Base folder API
      */
-    const BASE_FOLDER_URL = self::API_BASE_URL . self::API_VERSION . "/folders";
+    const BASE_FOLDER_URL = "https://api.box.com/2.0/folders";
 
     /**
      * File upload API
      */
-    const FILE_UPLOAD = self::API_UPLOAD_URL . self::API_VERSION . "/files/content";
+    const FILE_UPLOAD = "https://upload.box.com/api/2.0/files/content";
 
     /**
      * File upload pre-flight API
      */
-    const FILE_UPLOAD_PREFLIGHT = self::API_BASE_URL . self::API_VERSION . "/files/content";
+    const FILE_UPLOAD_PREFLIGHT = "https://api.box.com/2.0/files/content";
 
     /**
      * Base file API
      */
-    const BASE_FILE_URL = self::API_BASE_URL . self::API_VERSION . "/files";
+    const BASE_FILE_URL = "https://api.box.com/2.0/files";
 }
