@@ -1,5 +1,5 @@
 {
-    "name": "linkstreetlearning/box-sdk",
+    "name": "linkstreet/box-sdk",
     "description": "v2 Box sdk for php",
     "type": "sdk",
     "license": "MIT",
