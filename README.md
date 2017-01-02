@@ -60,7 +60,7 @@ So far this SDK has only machine to machine authentication mechanism and the fol
 2. Methods available in `$file_service`
     
         1. uploadPreFlight($file_path = "", $folder_id = 0);
-        2. upload($file_path = "", $folder_id = 0);
+        2. upload($file_path = "", $folder_id = 0, $filename = null); // If file name is null, filename will be derived from actual file name.
         3. getEmbedUrl($file_id)
         4. delete($file_id)
         5. destroyTrashedFile($file_id)

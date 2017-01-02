@@ -74,15 +74,16 @@ class FileService extends BaseService
      * Method to upload the file. By default it uploads to the root folder which is id 0
      * @param string $file_path
      * @param int $folder_id
+     * @param string $filename
      * @return \GuzzleHttp\Psr7\Response
      */
-    public function upload($file_path = "", $folder_id = 0)
+    public function upload($file_path = "", $folder_id = 0, $filename = null)
     {
         Assert::integerish($folder_id, "The folder id must be an integer. Got: %s");
 
         $handle = $this->readFile($file_path);
 
-        $file_name = basename($file_path);
+        $filename = ((!is_null($filename)) ? $filename : basename($file_path));
 
         return $this->guzzle_client->request(
             'POST',
@@ -92,7 +93,7 @@ class FileService extends BaseService
                     [
                         "name" => "attributes",
                         "contents" => json_encode([
-                            "name" => $file_name,
+                            "name" => $filename,
                             "parent" => [
                                 "id" => $folder_id
                             ]
