@@ -28,15 +28,16 @@ class FileService extends BaseService
     /**
      * @param $file_path string
      * @param $folder_id integer
+     * @param $filename string
      * @return \GuzzleHttp\Psr7\Response
      */
-    public function uploadPreFlight($file_path = "", $folder_id = 0)
+    public function uploadPreFlight($file_path = "", $folder_id = 0, $filename = null)
     {
         Assert::integerish($folder_id, "The folder id must be an integer. Got: %s");
 
         $this->readFile($file_path);
 
-        $file_name = basename($file_path);
+        $filename = ((!is_null($filename)) ? $filename : basename($file_path));
 
         // Throws exception on 4XX response code
         return $this->guzzle_client->request(
@@ -44,7 +45,7 @@ class FileService extends BaseService
             BAP::FILE_UPLOAD_PREFLIGHT,
             [
                 "json" => [
-                    "name" => $file_name,
+                    "name" => $filename,
                     "parent" => [
                         "id" => (string)$folder_id
                     ],
