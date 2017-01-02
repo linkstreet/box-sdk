@@ -22,6 +22,7 @@ So far this SDK has only machine to machine authentication mechanism and the fol
 ### Usage
 
     use Linkstreet\Box;
+    use Linkstreet\Box\Enums\SubscriptionType;
 
     $box_sdk = new Box(['client_id' => "", "client_secret" => ""]);
 
