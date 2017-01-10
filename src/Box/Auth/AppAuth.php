@@ -96,7 +96,10 @@ class AppAuth
      */
     public function getTokenInfo()
     {
-        // TODO: Validate if token is expired and then send
+        if (($this->token_info->issued_time + $this->token_info->expires_in) < time()) {
+            $this->claim->exp = time() + 10;
+            $this->authenticate($this->claim);
+        }
         return $this->token_info;
     }
 
