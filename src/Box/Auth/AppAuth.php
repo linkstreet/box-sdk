@@ -98,6 +98,7 @@ class AppAuth
     {
         if (($this->token_info->issued_time + $this->token_info->expires_in) < time()) {
             $this->claim->exp = time() + 10;
+            $this->claim->jti = substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil(32 / strlen($x)))), 1, 32);
             $this->authenticate($this->claim);
         }
         return $this->token_info;
