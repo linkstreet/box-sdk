@@ -19,10 +19,18 @@ class AppAuth
      * @var FolderService
      */
     protected $folder_service = null;
+
     /**
      * @var FileService
      */
     protected $file_service = null;
+
+    /**
+     * Save the claim so that we can reuse while re-issuing new tokens
+     * @var JWTClaim
+     */
+    protected $claim;
+
     /**
      * @var
      */
@@ -50,6 +58,8 @@ class AppAuth
      */
     public function authenticate(JWTClaim $claim)
     {
+        $this->claim = $claim;
+
         // $key Has to be the key file handler opened using openssl method
         $key = openssl_get_privatekey("file://" . getcwd() . '/' . $this->private_key, $this->pass_phrase);
 
