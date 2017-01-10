@@ -78,7 +78,7 @@ class AppAuth
 
         $this->token_info->issued_time = time();
 
-        return $this->getTokenInfo();
+        return $this->token_info;
     }
 
     /**
