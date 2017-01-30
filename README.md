@@ -51,7 +51,7 @@ $app_auth_instance = $box_sdk->getAppAuthClient($app_auth_info);
 
     ```
     1. getFolderInfo($folder_id); // Defaults to root folder (id = 0)
-    2. getFolderItems($folder_id); // Defaults to root folder (id = 0)
+    2. getFolderItems($folder_id = 0, $fields = [], $limit = 100, $offset = 0); // Defaults to root folder (id = 0)
     3. create($folder_name, $parent_folder_id = 0)
     4. delete($folder_id, $recursive = false, $e_tag = null)
     5. getTrashedItems()
