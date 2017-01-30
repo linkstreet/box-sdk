@@ -75,16 +75,33 @@ class FolderService extends BaseService
     /**
      * Method to get items inside a folder. Same info can be found inside `getFolderInfo` method as well.
      * @param $folder_id integer Id of the folder for which the items has to be listed.
+     * @param $fields array of fields which has to be included in response
+     * @param $limit integer Variable to limit the response items
+     * @param $offset integer Variable to offset the response items
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Response
      */
-    public function getFolderItems($folder_id = 0)
+    public function getFolderItems($folder_id = 0, $fields = [], $limit = 100, $offset = 0)
     {
         Assert::integerish($folder_id, "The folder id must be an integer. Got: %s");
+        Assert::integerish($limit, "The limit must be an integer. Got: %s");
+        Assert::integerish($offset, "The offset must be an integer. Got: %s");
+
+        $query_fields = "?fields=";
+
+        foreach ($fields as $field) {
+            if (trim($field)) {
+                $query_fields = $query_fields . $field . ",";
+            }
+        }
+
+        $query_fields .= rtrim($query_fields, ',');
+        $query_fields .= "&limit=" . $limit;
+        $query_fields .= "&offset=" . $offset;
 
         return $this->guzzle_client->request(
             'GET',
-            BAP::BASE_FOLDER_URL . BAP::URL_SEPARATOR . $folder_id . BAP::URL_SEPARATOR . "items",
+            BAP::BASE_FOLDER_URL . BAP::URL_SEPARATOR . $folder_id . BAP::URL_SEPARATOR . "items" . $query_fields,
             [
                 'headers' => [
                     "Authorization" => "Bearer " . $this->app_auth->getTokenInfo()->access_token
