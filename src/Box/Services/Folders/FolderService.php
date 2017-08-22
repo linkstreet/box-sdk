@@ -87,21 +87,27 @@ class FolderService extends BaseService
         Assert::integerish($limit, "The limit must be an integer. Got: %s");
         Assert::integerish($offset, "The offset must be an integer. Got: %s");
 
-        $query_fields = "?fields=";
+        $query_fields = array(
+          'fields' => array(),
+        );
 
-        foreach ($fields as $field) {
-            if (trim($field)) {
-                $query_fields = $query_fields . $field . ",";
-            }
+        if (!empty($fields)) {
+          foreach ($fields as $field) {
+              if (trim($field)) {
+                  $query_fields['fields'][] = trim($field);
+              }
+          }
+        } else {
+          unset($query_fields['fields']);
         }
 
-        $query_fields .= rtrim($query_fields, ',');
-        $query_fields .= "&limit=" . $limit;
-        $query_fields .= "&offset=" . $offset;
+        $query_fields['limit'] = $limit;
+        $query_fields['offset'] = $offset;
 
+        $query = http_build_query($query_fields);
         return $this->guzzle_client->request(
             'GET',
-            BAP::BASE_FOLDER_URL . BAP::URL_SEPARATOR . $folder_id . BAP::URL_SEPARATOR . "items" . $query_fields,
+            BAP::BASE_FOLDER_URL . BAP::URL_SEPARATOR . $folder_id . BAP::URL_SEPARATOR . "items" . '?' . $query,
             [
                 'headers' => [
                     "Authorization" => "Bearer " . $this->app_auth->getTokenInfo()->access_token
