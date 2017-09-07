@@ -61,11 +61,11 @@ class AppAuth
         $this->claim = $claim;
 
         // $key Has to be the key file handler opened using openssl method
-        $key = openssl_get_privatekey("file://" . getcwd() . '/' . $this->private_key, $this->pass_phrase);
+        $key = openssl_get_privatekey("file://" . $this->private_key, $this->pass_phrase);
 
         if ($key === false) {
             // TODO: Move to separate exception
-            throw new \Exception('Could not read key from "' . "file://" . getcwd() . '/' . $this->private_key . '" with pass phrase "' . $this->pass_phrase . '"');
+            throw new \Exception('Could not read key from "' . "file://" . $this->private_key . '" with pass phrase "' . $this->pass_phrase . '"');
         }
 
         $token = $claim->toArray();
