@@ -27,7 +27,15 @@ class BaseService
      */
     public function __construct(AppAuth $app_auth)
     {
-        $this->guzzle_client = new GuzzleClient();
+        $this->guzzle_client = new GuzzleClient([
+            'defaults' => [
+                'config' => [
+                    'curl' => [
+                        CURLOPT_SSLVERSION => CURL_SSLVERSION_TLSv1_2
+                    ]
+                ]
+            ]
+        ]);
 
         $this->app_auth = $app_auth;
     }
