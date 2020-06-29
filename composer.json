@@ -17,7 +17,7 @@
     },
     "require": {
         "firebase/php-jwt": "^4.0",
-        "guzzlehttp/guzzle": "^6.2",
+        "guzzlehttp/guzzle": "^7.0",
         "webmozart/assert": "^1.0"
     },
     "require-dev": {
